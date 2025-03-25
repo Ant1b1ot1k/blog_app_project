@@ -1,0 +1,18 @@
+<!--head, body and others will be inherited from base template-->
+{% extends "blog/base.html" %}
+<!-- content specified within the block content endblock content tags will be inserted into the rest of the html code inherited from the base.html in those tags -->
+{% block content %}
+    <!--  for loop possible in html template django  -->
+    {% for post in posts %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ post.author }}</a>
+              <small class="text-muted">{{ post.date_posted }}</small>
+            </div>
+            <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+            <p class="article-content">{{ post.content }}</p>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
