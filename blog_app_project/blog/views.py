@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from .models import Post # importing the Post model/table from the same package
+# from django.http import HttpResponse  # for using HttpResponse method
+from .models import Post  # importing the Post model/table from the same package
 
 
 # Create your views here.
