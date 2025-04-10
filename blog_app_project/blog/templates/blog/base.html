@@ -41,10 +41,26 @@
               <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
             </div>
             <!-- Navbar Right Side -->
-            <div class="navbar-nav">
-              <a class="nav-item nav-link" href="#">Login</a>
-              <a class="nav-item nav-link" href="#">Register</a>
-            </div>
+            {% if user.is_authenticated %}
+                <span class="navbar-text mr-3">
+                    Welcome {{ user.username }}!
+                </span>
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                </div>
+                <!-- The logout button submits a POST request to the logout URL with a CSRF token for security. -->
+                <form method="POST" action="{% url 'logout' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <div class="navbar-nav mr-auto">
+                        <button type="submit" class="nav-item nav-link btn btn-link">Logout</button>
+                    </div>
+                </form>
+            {% else %}
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                    <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                </div>
+            {% endif %}
           </div>
         </div>
       </nav>

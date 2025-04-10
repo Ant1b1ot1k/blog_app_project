@@ -122,3 +122,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+
+# default redirect url (home page) after loggin in
+LOGIN_REDIRECT_URL = 'blog-home'
+# redirecting to login page if someone tries to access any page that requires logging in
+LOGIN_URL = 'login'

@@ -1,0 +1,10 @@
+<!--head, body and others will be inherited from base template -->
+<!--templates can be referenced from other apps-->
+{% extends "blog/base.html" %}
+<!--Using this for styling our web page, so that fields are structured-->
+{% load crispy_forms_tags %}
+<!-- content specified within the block content endblock content tags will be inserted into the rest of the html code inherited from the base.html in those tags -->
+{% block content %}
+    <!-- user is built into django representing current logged in user -->
+    <h1>{{ user.username }}</h1>
+{% endblock content %}

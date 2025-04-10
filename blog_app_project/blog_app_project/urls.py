@@ -15,11 +15,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from users import views as user_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', user_views.register, name='register'),
+    path('profile/', user_views.profile, name='profile'),
+    # LoginView/LogoutView relies on django's default authentication system and requires only the login and password fields
+    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),  # class based views (LoginView/LogoutView) should be used with the method as_view() to be included in a URL pattern
+    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),  # these class based views will handle the forms and the logic (except the templates, need to create templates/html pages)
     path('', include('blog.urls')),  # any URL starting with '' in other words, anything after blog/ will be handled by the URL patterns defined in the blog.urls module.
 ]
